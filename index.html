@@ -153,6 +153,18 @@ body {
   overscroll-behavior-y: contain;
   touch-action: pan-y;
 }
+/* 手机端动作列表滚动修复 */
+#chosenList {
+  touch-action: pan-y !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+#chosenList .chosen {
+  touch-action: pan-y !important;
+  user-select: none;
+  -webkit-user-select: none;
+}
 </style>
 <meta name="theme-color" content="#0b0e09">
 <meta name="apple-mobile-web-app-capable" content="yes">

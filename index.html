@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RepReady</title>
+<style>
+:root{--bg:#0b0e09;--panel:#161b13;--panel2:#20271c;--line:#303a2a;--text:#f4f7ef;--muted:#9ca794;--lime:#caff55;--lime2:#e5ffb4;--red:#ff7b67}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#273621 0,transparent 44%),var(--bg);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);min-height:100vh}.app{max-width:500px;margin:auto;padding:20px 17px 36px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}.brand{display:flex;align-items:center;gap:9px;font-weight:850;letter-spacing:.4px}.logo{height:35px;width:35px;border-radius:12px;background:var(--lime);color:#17200e;display:grid;place-items:center;font-size:20px}.tag{font-size:10px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:7px 9px}.hidden{display:none!important}.eyebrow{font-size:10px;letter-spacing:1.7px;font-weight:800;color:var(--lime)}h1{font-size:36px;line-height:1.08;letter-spacing:-1.4px;margin:12px 0}h2{font-size:24px;letter-spacing:-.7px;margin:7px 0}h3{font-size:15px;margin:0}p{color:var(--muted);line-height:1.55;margin:0;font-size:14px}.hero,.timerbox{border:1px solid #38452e;border-radius:24px;background:linear-gradient(145deg,#20291b,#11150f 78%);padding:24px 21px}.primary,.secondary,.back,.danger{border:0;border-radius:13px;padding:14px 15px;font-weight:800;cursor:pointer;font-size:14px}.primary{background:var(--lime);color:#17200e;width:100%;margin-top:19px}.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line);width:100%;margin-top:9px}.back{background:var(--panel);color:var(--text);border:1px solid var(--line);padding:9px 11px}.danger{background:#40211e;color:#ffd0c8;border:1px solid #6b332c;width:100%;margin-top:12px}.headrow{display:flex;align-items:center;gap:11px;margin-bottom:20px}.headrow .heading{flex:1}.bodygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.bodycard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px;text-align:left;color:var(--text);cursor:pointer;min-height:102px}.bodycard.active{border-color:var(--lime);background:#222d1a}.emoji{font-size:25px;display:block;margin-bottom:12px}.bodycard strong{display:block;font-size:16px}.sub{display:block;font-size:10px;color:var(--muted);margin-top:5px}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 11px}.small{font-size:11px;color:var(--muted)}.list{display:grid;gap:8px;margin-top:14px}.exercise{display:flex;align-items:center;gap:10px;padding:12px;background:var(--panel);border:1px solid var(--line);border-radius:13px}.check{height:21px;width:21px;border:1px solid #64705a;border-radius:7px;display:grid;place-items:center;flex-shrink:0}.exercise.selected{border-color:#718b4e;background:#1d2718}.exercise.selected .check{background:var(--lime);border-color:var(--lime);color:#17200e}.exname{font-size:13px;font-weight:700;flex:1}.exsub{font-size:10px;color:var(--muted);margin-top:4px}.exercise button{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:6px 8px;cursor:pointer}.exercise button:disabled{opacity:.25;cursor:default}.summary{border:1px solid var(--line);background:var(--panel);border-radius:15px;padding:14px;margin:15px 0}.chosen{display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--line);padding:11px 9px;border-radius:10px;cursor:grab;user-select:none;transition:background .12s,border-color .12s}.chosen:last-child{border:0}.chosen:active{cursor:grabbing}.chosen.dragging{opacity:.4;background:#2b3623}.chosen.drag-over{border:1px dashed var(--lime);background:#222d1a}.draghandle{font-size:17px;letter-spacing:-4px;color:var(--muted);padding:0 5px 0 0;cursor:grab}.chosen .num{font-size:11px;color:var(--lime);width:20px}.chosen strong{font-size:12px;flex:1}.remove{background:transparent;color:#ff9a8a;border:0;font-size:17px;cursor:pointer}.pill{background:#2a3720;color:var(--lime);border-radius:99px;padding:6px 9px;font-size:10px}.metric{display:flex;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}.metric span{color:var(--muted)}.time{font-size:62px;line-height:1.1;font-weight:850;letter-spacing:-2.6px;text-align:center;margin:22px 0 8px;color:var(--lime);font-variant-numeric:tabular-nums}.center{text-align:center}.state{font-size:12px;color:var(--lime2);line-height:1.5}.hrbig{font-size:25px;font-weight:800}.hrbox{background:#13180f;border:1px solid var(--line);border-radius:14px;padding:13px;margin-top:14px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tiny{font-size:10px;color:#7e8975;line-height:1.5;margin-top:14px}.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--lime);color:#17200e;padding:11px 15px;border-radius:12px;font-size:12px;font-weight:800;display:none;z-index:10;white-space:nowrap}
+#alarm{position:fixed;inset:0;background:#0b0e09;z-index:50;display:flex;align-items:center;justify-content:center;padding:22px;text-align:center}.alarm-inner{width:100%;max-width:420px}.alarm-label{font-size:11px;letter-spacing:2px;color:var(--lime);font-weight:800}.alarm-time{font-size:clamp(80px,23vw,130px);font-weight:850;letter-spacing:-5px;line-height:1.1;margin:23px 0;color:var(--lime);font-variant-numeric:tabular-nums}.alarm-reason{font-size:15px;color:var(--text);margin-bottom:8px}.alarm-sub{font-size:12px;color:var(--muted);margin-bottom:34px}.stopalarm{width:100%;max-width:330px;background:var(--lime);color:#17200e;border:0;border-radius:17px;padding:18px;font-size:16px;font-weight:850;cursor:pointer}.alarm-orb{height:9px;width:9px;border-radius:50%;background:var(--lime);display:inline-block;margin-right:8px;box-shadow:0 0 18px var(--lime)}.celebrate{position:fixed;inset:0;z-index:60;background:radial-gradient(circle at 50% 38%,#2b3c20,#0b0e09 65%);display:flex;align-items:center;justify-content:center;text-align:center;padding:25px}.celebrate-inner{max-width:390px}.confetti{font-size:58px;letter-spacing:5px;animation:pop .7s ease-out}@keyframes pop{0%{transform:scale(.3);opacity:0}80%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}.celebrate h2{font-size:30px;margin:20px 0 10px}.celebrate p{font-size:14px}.celebrate .primary{max-width:320px}@media(min-width:600px){.app{padding-top:28px}}
+/* RepReady 2.0：iPhone 使用体验优化 */
+html {
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior-y: contain;
+}
+
+.app {
+  padding-top: calc(20px + env(safe-area-inset-top));
+  padding-bottom: calc(36px + env(safe-area-inset-bottom));
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
+.primary,
+.secondary,
+.back,
+.danger,
+.stopalarm {
+  min-height: 44px;
+}
+
+.chosen {
+  touch-action: pan-y;
+}
+
+@media (min-width: 600px) {
+  .app {
+    padding-top: calc(28px + env(safe-area-inset-top));
+  }
+}
+
+/* RepReady 2.0：iPhone 使用体验优化 */
+html {
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior-y: contain;
+}
+
+.app {
+  padding-top: calc(20px + env(safe-area-inset-top));
+  padding-bottom: calc(36px + env(safe-area-inset-bottom));
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
+.primary,
+.secondary,
+.back,
+.danger,
+.stopalarm {
+  min-height: 44px;
+}
+
+.chosen {
+  touch-action: pan-y;
+}
+
+@media (min-width: 600px) {
+  .app {
+    padding-top: calc(28px + env(safe-area-inset-top));
+  }
+}
+
+</style>
+<meta name="theme-color" content="#0b0e09">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RepReady">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+
+</head>
+<body>
+<main class="app">
+<header class="top"><div class="brand"><div class="logo">↗</div><span>RepReady</span></div><div class="tag">TRAIN SMART · REST RIGHT</div></header>
+
+<section id="home">
+ <div class="hero"><div class="eyebrow">READY WHEN YOU ARE</div><h1>今天，决定<br>练什么？</h1><p>每一组认真完成，每一次休息都有意义。准备好，就开始今天的训练。</p><button class="primary" onclick="show('parts')">开始今天的训练　→</button></div>
+ <div class="sectionhead"><h3>上次训练</h3><span class="small">KEEP THE MOMENTUM</span></div>
+ <div class="summary" style="display:flex;align-items:center;gap:12px"><div style="font-size:28px">🏋️</div><div style="flex:1"><strong id="lastTitle" style="font-size:14px">背部训练</strong><div id="lastSub" class="small" style="margin-top:6px">高位下拉 · 坐姿划船 · 共 4 个动作</div></div><span style="font-size:22px;color:var(--muted)">›</span></div>
+ <p class="center" style="font-size:11px;margin-top:18px">一组一组来，进步会慢慢累积。 💪</p>
+</section>
+
+<section id="parts" class="hidden">
+ <div class="headrow"><button class="back" onclick="show('home')">← 返回</button><div class="heading"><div class="eyebrow">STEP 01</div><h2>今天练哪个部位？</h2><p>选择部位，再挑选动作。</p></div></div><div class="bodygrid" id="bodygrid"></div><button class="primary" onclick="show('exercises')">去选择动作 →</button>
+</section>
+
+<section id="exercises" class="hidden">
+ <div class="headrow"><button class="back" onclick="show('parts')">← 返回</button><div class="heading"><div class="eyebrow">STEP 02</div><h2 id="exTitle">背 · 选择动作</h2><p>点击添加动作；在下方按住「⠿」拖动，就能直接调整训练顺序。</p></div></div>
+ <div id="exerciseList" class="list"></div>
+ <div class="sectionhead"><h3>今日动作顺序</h3><span id="count" class="pill">0 个动作</span></div><div id="chosenList" class="summary"></div><p class="small" style="margin-top:-5px">按住左侧拖动图标即可排序，不用再点上下箭头。</p>
+ <button class="primary" onclick="confirmPlan()">确认动作，进入训练 →</button><button class="secondary" onclick="show('parts')">更换训练部位</button>
+</section>
+
+<section id="training" class="hidden">
+ <div class="headrow"><button class="back" onclick="show('exercises')">← 修改动作</button><div class="heading"><div class="eyebrow">TRAINING MODE</div><h2>训练进行中</h2><p>做完一组，再点击「开始休息」。</p></div></div>
+ <div class="timerbox">
+  <div class="small" id="progress">动作 1 / 4</div><h2 id="activeExercise" style="margin-top:8px">高位下拉</h2>
+  <div class="metric"><span>当前组数</span><strong id="setNum">第 1 组</strong></div>
+  <div class="time" id="clock">02:00</div><div class="state center" id="timerState">完成这一组后，点击开始休息</div>
+  <div class="hrbox"><div class="metric" style="padding-top:0"><span>⌚ Apple Watch 心率</span><span class="pill" id="hrMode">演示模式</span></div><div class="center" style="padding:9px 0"><div class="hrbig" id="hrValue">-- BPM</div><div class="small" id="hrAdvice" style="margin-top:6px">正式连接后将在这里显示实时心率</div></div><div class="small">演示心率（可拖动）</div><input type="range" min="65" max="170" value="108" id="hrSlider" oninput="changeHR(this.value)" style="width:100%;accent-color:var(--lime);margin-top:9px"></div>
+  <div class="actions"><button class="secondary" id="startRest" onclick="beginRest()">开始休息</button><button class="secondary" onclick="completeRest()" id="finishRest">完成休息 / 下一组</button></div>
+  <button class="secondary" onclick="extendRest()">再休息 30 秒</button><button class="secondary" onclick="nextExercise()">完成当前动作 → 下一个动作</button><button class="danger" onclick="endWorkout()">结束本次训练</button>
+  <div class="tiny">当前为交互原型：心率由滑块模拟，不会读取 Apple Watch。正式版需原生 watchOS + HealthKit 才能读取心率并可靠触发后台触觉提醒。</div>
+ </div>
+</section>
+</main>
+
+<section id="alarm" class="hidden"><div class="alarm-inner"><div class="alarm-label"><span class="alarm-orb"></span>REPRE ADY · REST ALERT</div><div class="alarm-time" id="alarmClock">00:00</div><div class="alarm-reason" id="alarmReason">休息时间已到</div><div class="alarm-sub" id="alarmSub">心率趋势也可作为参考，请结合主观状态判断。</div><button class="stopalarm" onclick="dismissAlarm()">关闭提醒</button><p style="font-size:11px;margin-top:18px">关闭后，点击「完成休息 / 下一组」继续训练</p></div></section>
+<section id="celebrate" class="celebrate hidden"><div class="celebrate-inner"><div class="confetti" id="celebrateEmoji">🎉✨💥</div><div class="eyebrow" id="celebrateEyebrow">EXERCISE COMPLETE</div><h2 id="celebrateTitle">漂亮！动作完成</h2><p id="celebrateText">今天的努力，都会变成明天的底气。</p><button class="primary" onclick="closeCelebrate()">继续训练 →</button></div></section>
+<div id="toast" class="toast"></div>
+<script>
+const parts=[
+{id:'胸',emoji:'🏋️',sub:'PUSH · CHEST',ex:['平板杠铃卧推','上斜哑铃卧推','平板哑铃卧推','器械推胸','双杠臂屈伸','绳索夹胸','蝴蝶机夹胸','俯卧撑']},
+{id:'背',emoji:'🪽',sub:'PULL · BACK',ex:['引体向上','高位下拉','坐姿划船','杠铃俯身划船','单臂哑铃划船','胸托划船','直臂下压','硬拉']},
+{id:'肩',emoji:'🏋️',sub:'SHOULDERS',ex:['坐姿哑铃推肩','杠铃推举','哑铃侧平举','绳索侧平举','俯身哑铃反向飞鸟','面拉','器械推肩']},
+{id:'手臂',emoji:'💪',sub:'ARMS',ex:['哑铃交替弯举','杠铃弯举','锤式弯举','牧师凳弯举','绳索下压','仰卧臂屈伸','过顶绳索臂屈伸','窄距俯卧撑']},
+{id:'腿',emoji:'🦵',sub:'LEGS',ex:['杠铃深蹲','史密斯深蹲','腿举','罗马尼亚硬拉','保加利亚分腿蹲','腿屈伸','俯卧腿弯举','站姿提踵']},
+{id:'核心',emoji:'🔥',sub:'CORE',ex:['平板支撑','卷腹','悬垂举腿','仰卧举腿','绳索卷腹','死虫式','俄罗斯转体']}
+];
+const restDefaults={'胸':120,'背':120,'肩':90,'手臂':60,'腿':150,'核心':60};
+let body='背',selected=['高位下拉','坐姿划船','引体向上','单臂哑铃划船'],current=0,set=1,restSeconds=0,remaining=0,resting=false,alarmOn=false,hr=108,restTimer=null,alarmInterval=null,afterCelebrate='training',sessionDone=false,dragSource=-1;
+const $=id=>document.getElementById(id);
+function show(id){['home','parts','exercises','training'].forEach(s=>$(s).classList.toggle('hidden',s!==id));window.scrollTo(0,0)}
+function renderParts(){$('bodygrid').innerHTML=parts.map(p=>`<button class="bodycard ${p.id===body?'active':''}" onclick="chooseBody('${p.id}')"><span class="emoji">${p.emoji}</span><strong>${p.id}</strong><span class="sub">${p.sub}</span></button>`).join('')}
+function chooseBody(id){body=id;selected=[];renderParts();renderExercises()}
+function renderExercises(){let p=parts.find(p=>p.id===body);$('exTitle').textContent=body+' · 选择动作';$('exerciseList').innerHTML=p.ex.map(ex=>{let yes=selected.includes(ex);return `<div class="exercise ${yes?'selected':''}" onclick="toggleExercise('${ex}')"><div class="check">${yes?'✓':''}</div><div class="exname">${ex}<div class="exsub">建议休息时间起点：${restDefaults[body]} 秒</div></div><span class="small">${yes?'已添加':'＋ 添加'}</span></div>`}).join('');renderChosen()}
+function toggleExercise(ex){if(selected.includes(ex))selected=selected.filter(x=>x!==ex);else selected.push(ex);renderExercises()}
+function renderChosen(){$('count').textContent=selected.length+' 个动作';$('chosenList').innerHTML=selected.length?selected.map((ex,i)=>`<div class="chosen" draggable="true" data-index="${i}" ondragstart="dragStart(event,${i})" ondragover="dragOver(event,${i})" ondrop="dropExercise(event,${i})" ondragend="dragEnd()"><span class="draghandle" aria-label="拖动排序">⠿</span><span class="num">${String(i+1).padStart(2,'0')}</span><strong>${ex}</strong><button class="remove" onclick="removeExercise(${i})" aria-label="删除" draggable="false">×</button></div>`).join(''):'<div class="small">尚未添加动作。先从上方列表点选，再拖动这里的动作来排序。</div>'}
+function dragStart(event,i){dragSource=i;event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/plain',String(i));event.currentTarget.classList.add('dragging')}
+function dragOver(event,i){event.preventDefault();event.dataTransfer.dropEffect='move';document.querySelectorAll('.chosen.drag-over').forEach(el=>el.classList.remove('drag-over'));if(i!==dragSource)event.currentTarget.classList.add('drag-over')}
+function dropExercise(event,i){event.preventDefault();let from=dragSource;if(from<0||from===i)return;let moved=selected.splice(from,1)[0];selected.splice(i,0,moved);dragSource=-1;renderExercises()}
+function dragEnd(){dragSource=-1;document.querySelectorAll('.chosen').forEach(el=>el.classList.remove('dragging','drag-over'))}
+function removeExercise(i){selected.splice(i,1);renderExercises()}
+function confirmPlan(){if(!selected.length){toast('至少选择一个动作，再开始训练');return}current=0;set=1;resting=false;remaining=restDefaults[body];renderTraining();show('training')}
+function renderTraining(){$('progress').textContent=`动作 ${current+1} / ${selected.length}`;$('activeExercise').textContent=selected[current];$('setNum').textContent=`第 ${set} 组`;$('clock').textContent=fmt(restDefaults[body]);$('timerState').textContent='完成这一组后，点击开始休息';$('startRest').disabled=false;$('finishRest').disabled=false;$('hrMode').textContent='演示模式';changeHR(hr);if(restTimer){clearInterval(restTimer);restTimer=null}}
+function fmt(n){return String(Math.floor(Math.max(0,n)/60)).padStart(2,'0')+':'+String(Math.max(0,n)%60).padStart(2,'0')}
+function changeHR(v){hr=Number(v);$('hrValue').textContent=hr+' BPM';let advice=hr<=95?'心率相对较低：可作为恢复参考，但不是恢复完成的保证。':hr<=115?'心率正在可观察范围：结合呼吸、疲劳和动作质量判断。':'心率仍偏高：可以继续休息；如果时间已到，也不要勉强开始。';$('hrAdvice').textContent=advice;if(resting&&hr<=95&&!alarmOn)triggerAlarm('心率达到演示阈值')}
+function beginRest(){if(resting)return;resting=true;remaining=restDefaults[body];$('timerState').textContent='正在休息 · 心率与时间持续观察';$('startRest').textContent='休息计时中…';$('startRest').disabled=true;$('hrMode').textContent='演示数据';if(restTimer)clearInterval(restTimer);restTimer=setInterval(()=>{if(!resting||alarmOn)return;remaining--;if(remaining<0)remaining=0;$('clock').textContent=fmt(remaining);if(remaining===0&&!alarmOn)triggerAlarm('最低休息时间已到');},1000);if(hr<=95)triggerAlarm('心率达到演示阈值')}
+function triggerAlarm(reason){if(alarmOn)return;alarmOn=true;$('alarm').classList.remove('hidden');$('alarmClock').textContent=fmt(remaining);$('alarmReason').textContent=reason;$('alarmSub').textContent=reason.includes('心率')?'演示心率已达到设定阈值。正式训练请同时参考主观疲劳与动作质量。':'达到最低休息时间。是否开始下一组，请结合呼吸、疲劳和动作质量判断。';try{if(navigator.vibrate)navigator.vibrate([180,100,180,100,180])}catch(e){}playChimes();alarmInterval=setInterval(()=>{if(alarmOn){playChimes();$('alarmClock').textContent=fmt(remaining);try{if(navigator.vibrate)navigator.vibrate([180,100,180])}catch(e){}}},4000)}
+function playChimes(){playToneSequence([{t:0,f:1175,d:.17},{t:.22,f:1568,d:.17},{t:.44,f:1397,d:.17}],.23,'sine')}
+// 完成单个动作：短促、上扬的金币音效
+function playCoinSound(){playToneSequence([{t:0,f:988,d:.11},{t:.105,f:1319,d:.13},{t:.23,f:1760,d:.2}],.19,'sine')}
+// 完成整场训练：更饱满的通关旋律
+function playVictorySound(){playToneSequence([{t:0,f:523,d:.18},{t:.17,f:659,d:.18},{t:.34,f:784,d:.2},{t:.56,f:1047,d:.42},{t:1.02,f:784,d:.16},{t:1.2,f:1047,d:.5}],.2,'triangle')}
+function playToneSequence(notes,volume,type){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;const ctx=new C();if(ctx.state==='suspended')ctx.resume();notes.forEach(n=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.setValueAtTime(n.f,ctx.currentTime+n.t);g.gain.setValueAtTime(.0001,ctx.currentTime+n.t);g.gain.exponentialRampToValueAtTime(volume,ctx.currentTime+n.t+.012);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+n.t+n.d);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime+n.t);o.stop(ctx.currentTime+n.t+n.d+.02)});setTimeout(()=>ctx.close(),1900)}catch(e){}}
+function dismissAlarm(){alarmOn=false;$('alarm').classList.add('hidden');if(alarmInterval)clearInterval(alarmInterval);alarmInterval=null;try{if(navigator.vibrate)navigator.vibrate(0)}catch(e){}$('timerState').textContent='提醒已关闭 · 点击「完成休息 / 下一组」继续'}
+function extendRest(){if(!resting){toast('请先点击「开始休息」');return}remaining+=30;$('clock').textContent=fmt(remaining);$('timerState').textContent='已延长 30 秒，继续恢复';toast('已增加 30 秒休息')}
+function completeRest(){if(!resting){toast('先点击「开始休息」');return}if(alarmOn)dismissAlarm();if(restTimer){clearInterval(restTimer);restTimer=null}resting=false;set++;$('setNum').textContent=`第 ${set} 组`;$('clock').textContent=fmt(restDefaults[body]);$('timerState').textContent=`第 ${set} 组准备就绪 · 做完后再次点击开始休息`;$('startRest').textContent='开始休息';$('startRest').disabled=false;toast('下一组，稳住动作质量')}
+function nextExercise(){if(resting&&restTimer){clearInterval(restTimer);restTimer=null}if(alarmOn)dismissAlarm();resting=false;if(current<selected.length-1){playCoinSound();afterCelebrate='training';$('celebrateEmoji').textContent='🪙 ✨ 🎉';$('celebrateEyebrow').textContent='EXERCISE COMPLETE';$('celebrateTitle').textContent='漂亮！动作完成';$('celebrateText').textContent=['叮！金币到账，今天又变强了一点。','奖励已到账，带着状态继续下一项！','又解锁一个动作，继续稳稳推进。'][current%3];current++;sessionDone=false;showCelebrate()}else{playVictorySound();afterCelebrate='home';$('celebrateEmoji').textContent='🏆 🎆 ✨';$('celebrateEyebrow').textContent='WORKOUT COMPLETE';$('celebrateTitle').textContent='通关！今日训练完成';$('celebrateText').textContent='你不需要每天都超越别人，只要一次次兑现对自己的承诺。今天做到了，值得为自己骄傲。';sessionDone=true;showCelebrate()}}
+function showCelebrate(){ $('celebrate').classList.remove('hidden')}
+function closeCelebrate(){$('celebrate').classList.add('hidden');if(afterCelebrate==='home'){ $('lastTitle').textContent=body+'部训练';$('lastSub').textContent=selected.slice(0,3).join(' · ')+(selected.length>3?' · 共 '+selected.length+' 个动作':' · 共 '+selected.length+' 个动作');show('home')}else{set=1;renderTraining();show('training')}}
+function endWorkout(){if(restTimer)clearInterval(restTimer);resting=false;if(alarmOn)dismissAlarm();playVictorySound();$('celebrateEmoji').textContent='🏆 🎆 ✨';$('celebrateEyebrow').textContent='WORKOUT COMPLETE';$('celebrateTitle').textContent='训练已结束';$('celebrateText').textContent='完成今天能完成的，明天继续进步。';afterCelebrate='home';showCelebrate()}
+function toast(s){let e=$('toast');e.textContent=s;e.style.display='block';setTimeout(()=>e.style.display='none',1700)}
+renderParts();renderExercises();
+</script>
+<script>
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+  });
+}
+</script>
+
+</body></html>

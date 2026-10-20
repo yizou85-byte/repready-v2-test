@@ -1,1 +1,2 @@
-# repready-v2-test
+# repready-app
+RepReady workout rest timer
